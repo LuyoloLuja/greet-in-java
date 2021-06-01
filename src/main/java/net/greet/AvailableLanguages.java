@@ -1,9 +1,9 @@
 package net.greet;
 
 public enum AvailableLanguages {
+    AFRIKAANS("More "),
     ENGLISH("Hello "),
-    ISIXHOSA("Molo "),
-    AFRIKAANS("More ");
+    ISIXHOSA("Molo ");
 
     private final String availableLanguage;
 
@@ -11,7 +11,7 @@ public enum AvailableLanguages {
         this.availableLanguage = availableLanguage;
     }
 
-    public String getAvailableLanguage(){
+    public String getAvailableLanguage() {
         return availableLanguage;
     }
 }
