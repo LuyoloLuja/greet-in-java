@@ -23,21 +23,23 @@ public class Greet implements Greetings {
 //  method to get all greeted users
     public void greetedUsers() {
         for (Map.Entry<String, Integer> name : greetedUsers.entrySet()) {
-            System.out.println(name.getKey() + " GREETED " + name.getValue() + " TIME(s)");
+            System.out.println("Name: " + name.getKey() + " --- Times Greeted: " + name.getValue());
+        }
+    }
+
+    //  method to check how many times each user has been greeted
+    public void counterForOneUser(String username) {
+
+//      Needs Work
+        if (greetedUsers.containsKey(username)) {
+//      Needs Work
+            System.out.println(greetedUsers.entrySet());
         }
     }
 
     //  method to check how many users have been greeted
     public int counterForAllUsers() {
-        System.out.println("Number of users greeted: " + greetedUsers.size());
         return greetedUsers.size();
-    }
-
-//  method to check how many times each user has been greeted
-    public int counterForOneUser(String username) {
-        username = getLowerCaseString(username);
-
-        return 0;
     }
 
 //  method to clear delete all users and reset counter
@@ -47,8 +49,13 @@ public class Greet implements Greetings {
 
 //  clear method that deletes a user by username and decrement counter for all by 1
     public void clearOneUser(String username) {
-        int currentUsername = greetedUsers.get(username);
-        System.out.println(greetedUsers.put(username, currentUsername-1));
+        username = getLowerCaseString(username);
+
+        if (greetedUsers.get(username) > 0) {
+            int currentUser = greetedUsers.get(username);
+            currentUser--;
+            greetedUsers.put(username, currentUser);
+        }
     }
 
     //  exit method to exit program
