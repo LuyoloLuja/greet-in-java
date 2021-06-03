@@ -12,9 +12,9 @@ public class Main {
         System.out.println("Enter 'help' to get help with using the program.");
         String enteredCommand;
 
-        Boolean run = true;
+        Boolean programExecution = true;
 
-        while(run){
+        while(programExecution){
 
             System.out.print("Please enter a command: ");
             enteredCommand = commandScanner.nextLine();
@@ -50,7 +50,7 @@ public class Main {
                 greet.clearAllUsers();
                 System.out.println("Cleared!");
             } else if (command.equals("exit")) {
-                run = false;
+                programExecution = false;
             } else if (command.equals("help")){
                 greet.help();
             } else {
