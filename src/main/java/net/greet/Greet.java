@@ -2,6 +2,7 @@ package net.greet;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 public class Greet implements Greetings {
     HashMap <String, Integer> greetedUsers = new HashMap<>();
@@ -29,11 +30,11 @@ public class Greet implements Greetings {
 
     //  method to check how many times each user has been greeted
     public void counterForOneUser(String username) {
+        username = getLowerCaseString(username);
 
-//      Needs Work
         if (greetedUsers.containsKey(username)) {
-//      Needs Work
-            System.out.println(greetedUsers.entrySet());
+            int currentUserCounter = greetedUsers.get(username);
+            System.out.println("Name: " + username + " --- Times Greeted: " + currentUserCounter);
         }
     }
 

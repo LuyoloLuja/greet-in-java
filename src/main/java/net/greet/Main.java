@@ -40,19 +40,18 @@ public class Main {
                 greet.greetedUsers();
             } else if (command.equals("counter")) {
                 System.out.println(greet.counterForAllUsers());
+            } else if(command.equals("counter") && !name.equals(" ")){
+                greet.counterForOneUser(name);
             } else if (command.equals("clear") && !name.equals(" ")) {
                 greet.clearOneUser(name);
             } else if(command.equals("clear")){
                 greet.clearAllUsers();
-            } else if(command.equals("count")){
-                greet.counterForOneUser(name);
-            }
-            else if (command.equals("help")){
+                System.out.println("Cleared!");
+            } else if (command.equals("help")){
                 greet.help();
             } else {
                 System.out.println("Please enter a valid command!");
             }
-//            greet.counterForOneUser(name);
         }
 
     }
