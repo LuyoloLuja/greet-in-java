@@ -10,9 +10,11 @@ public class Main {
 //      get user language
         Scanner commandScanner = new Scanner(System.in);
         System.out.println("Enter 'help' to get help with using the program.");
-        String enteredCommand = "";
+        String enteredCommand;
 
-        while(!enteredCommand.equals("exit")){
+        Boolean run = true;
+
+        while(run){
 
             System.out.print("Please enter a command: ");
             enteredCommand = commandScanner.nextLine();
@@ -40,19 +42,20 @@ public class Main {
                 greet.greetedUsers();
             } else if (command.equals("counter")) {
                 System.out.println(greet.counterForAllUsers());
-            } else if(command.equals("counter") && !name.equals(" ")){
+            } else if(command.equals("count") && !name.equals(" ")) {
                 greet.counterForOneUser(name);
             } else if (command.equals("clear") && !name.equals(" ")) {
                 greet.clearOneUser(name);
-            } else if(command.equals("clear")){
+            } else if(command.equals("delete")){
                 greet.clearAllUsers();
                 System.out.println("Cleared!");
+            } else if (command.equals("exit")) {
+                run = false;
             } else if (command.equals("help")){
                 greet.help();
             } else {
                 System.out.println("Please enter a valid command!");
             }
         }
-
     }
 }

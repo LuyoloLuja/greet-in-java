@@ -73,7 +73,7 @@ public class Greet implements Greetings {
         System.out.println("To see greeted user names: greeted.");
         System.out.println("To see how many times a certain user has been greeted: greeted Username");
         System.out.println("To get the number of users that are greeted: counter.");
-        System.out.println("To delete all the users that were greeted: clear.");
+        System.out.println("To delete all the users that were greeted: delete.");
         System.out.println("To increment the counter of a certain user: clear Username.");
         System.out.println("To exit the program: exit.");
     }
