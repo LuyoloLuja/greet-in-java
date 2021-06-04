@@ -1,12 +1,11 @@
 package net.greet;
 
 public interface Greetings {
-    void greetUser(String username, String language);
-    void greetedUsers();
+    String greetUser(String username, String language);
+    String greetedUsers();
     int counterForAllUsers();
-    void counterForOneUser(String username);
+    String counterForOneUser(String username);
     void clearAllUsers();
-    void clearOneUser(String username);
-    void exitProgram();
+    int clearOneUser(String username);
     void help();
 }

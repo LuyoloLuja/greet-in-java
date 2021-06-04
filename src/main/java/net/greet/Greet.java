@@ -2,13 +2,12 @@ package net.greet;
 
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Set;
 
 public class Greet implements Greetings {
     HashMap <String, Integer> greetedUsers = new HashMap<>();
 
 //  method that will take user name and language and put in the HashMap
-    public void greetUser(String username, String language) {
+    public String greetUser(String username, String language) {
 
         username = getLowerCaseString(username);
 
@@ -17,25 +16,32 @@ public class Greet implements Greetings {
         } else if (greetedUsers.containsKey(username)) {
             greetedUsers.put(username, greetedUsers.get(username) + 1);
         }
-
-        System.out.println(AvailableLanguages.valueOf(language).getAvailableLanguage() + username + "!");
+        return AvailableLanguages.valueOf(language).getAvailableLanguage() + username + "!";
     }
 
 //  method to get all greeted users
-    public void greetedUsers() {
+    public String greetedUsers() {
+        String username = "";
+        int userCounter = 0;
+
         for (Map.Entry<String, Integer> name : greetedUsers.entrySet()) {
-            System.out.println("Name: " + name.getKey() + " --- Times Greeted: " + name.getValue());
+            username = name.getKey();
+            userCounter = name.getValue();
+            System.out.println("Name: " + username + " --- Times Greeted: " + userCounter);
         }
+        return username + " : " + userCounter;
     }
 
     //  method to check how many times each user has been greeted
-    public void counterForOneUser(String username) {
+    public String counterForOneUser(String username) {
         username = getLowerCaseString(username);
+        int currentUserCounter = 0;
 
         if (greetedUsers.containsKey(username)) {
-            int currentUserCounter = greetedUsers.get(username);
-            System.out.println("Name: " + username + " --- Times Greeted: " + currentUserCounter);
+            currentUserCounter  = greetedUsers.get(username);
         }
+        System.out.println("Name: " + username + " --- Times Greeted: " + currentUserCounter);
+        return username + " : " + currentUserCounter;
     }
 
     //  method to check how many users have been greeted
@@ -49,19 +55,25 @@ public class Greet implements Greetings {
     }
 
 //  clear method that deletes a user by username and decrement counter for all by 1
-    public void clearOneUser(String username) {
+    public int clearOneUser(String username) {
         username = getLowerCaseString(username);
+        int currentUser = 0;
 
         if (greetedUsers.get(username) > 0) {
-            int currentUser = greetedUsers.get(username);
+            currentUser = greetedUsers.get(username);
             currentUser--;
-            greetedUsers.put(username, currentUser);
-        }
-    }
 
-    //  exit method to exit program
-    public void exitProgram() {
-        System.exit(0);
+            greetedUsers.put(username, currentUser);
+
+            if (currentUser > 0) {
+                System.out.println("Counter decremented for " + username + "!");
+                System.out.println(username + ": " + currentUser);
+            } else {
+                greetedUsers.remove(username);
+                System.out.println("Cleared " + username + "!");
+            }
+        }
+        return currentUser;
     }
 
 //    help method to show users how to use the program
@@ -69,7 +81,7 @@ public class Greet implements Greetings {
         System.out.println(" ");
         System.out.println("There are 3 available languages - ENGLISH, ISIXHOSA & AFRIKAANS.");
         System.out.println(" ");
-        System.out.println("To greet someone use the greet command: e.g greet Username ENGLISH.");
+        System.out.println("To greet someone use the greet command: e.g greet Username LANGUAGE.");
         System.out.println("To see greeted user names: greeted.");
         System.out.println("To see how many times a certain user has been greeted: greeted Username");
         System.out.println("To get the number of users that are greeted: counter.");
