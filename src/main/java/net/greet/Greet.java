@@ -9,7 +9,7 @@ public class Greet implements Greetings {
 //  method that will take user name and language and put in the HashMap
     public String greetUser(String username, String language) {
 
-        username = getLowerCaseString(username);
+        username = ignoreCaseForNames(username);
 
         if (!greetedUsers.containsKey(username)) {
             greetedUsers.put(username, 1);
@@ -27,24 +27,24 @@ public class Greet implements Greetings {
         for (Map.Entry<String, Integer> name : greetedUsers.entrySet()) {
             username = name.getKey();
             userCounter = name.getValue();
-            System.out.println("Name: " + username + " --- Times Greeted: " + userCounter);
+            System.out.println("Name: " + username + " - Times Greeted: " + userCounter);
         }
         return username + " : " + userCounter;
     }
 
     //  method to check how many times each user has been greeted
     public String counterForOneUser(String username) {
-        username = getLowerCaseString(username);
+        username = ignoreCaseForNames(username);
         int currentUserCounter = 0;
 
         if (greetedUsers.containsKey(username)) {
             currentUserCounter  = greetedUsers.get(username);
         }
-        System.out.println("Name: " + username + " --- Times Greeted: " + currentUserCounter);
+        System.out.println("Name: " + username + " - Times Greeted: " + currentUserCounter);
         return username + " : " + currentUserCounter;
     }
 
-    //  method to check how many users have been greeted
+//  method to check how many users have been greeted
     public int counterForAllUsers() {
         return greetedUsers.size();
     }
@@ -56,7 +56,7 @@ public class Greet implements Greetings {
 
 //  clear method that deletes a user by username and decrement counter for all by 1
     public int clearOneUser(String username) {
-        username = getLowerCaseString(username);
+        username = ignoreCaseForNames(username);
         int currentUser = 0;
 
         if (greetedUsers.get(username) > 0) {
@@ -68,7 +68,7 @@ public class Greet implements Greetings {
             if (currentUser > 0) {
                 System.out.println("Counter decremented for " + username + "!");
                 System.out.println(username + ": " + currentUser);
-            } else {
+            }  else {
                 greetedUsers.remove(username);
                 System.out.println("Cleared " + username + "!");
             }
@@ -78,20 +78,20 @@ public class Greet implements Greetings {
 
 //    help method to show users how to use the program
     public void help() {
-        System.out.println(" ");
         System.out.println("There are 3 available languages - ENGLISH, ISIXHOSA & AFRIKAANS.");
+        System.out.println("Available commands - greet, greeted, count, counter, clear, delete.");
         System.out.println(" ");
-        System.out.println("To greet someone use the greet command: e.g greet Username LANGUAGE.");
-        System.out.println("To see greeted user names: greeted.");
-        System.out.println("To see how many times a certain user has been greeted: greeted Username");
-        System.out.println("To get the number of users that are greeted: counter.");
-        System.out.println("To delete all the users that were greeted: delete.");
-        System.out.println("To increment the counter of a certain user: clear Username.");
-        System.out.println("To exit the program: exit.");
+        System.out.println("1. To greet someone - greet Username LANGUAGE.");
+        System.out.println("2. To see greeted people - greeted.");
+        System.out.println("3. To see how many times someone has been greeted - greeted Username.");
+        System.out.println("4. To see how people have been greeted - counter.");
+        System.out.println("5. To increment the counter of a certain user - clear Username.");
+        System.out.println("6. To delete all the people that were greeted - delete.");
+        System.out.println("7. To exit the program - exit.");
     }
 
 //  format username to start with uppercase at index 0 and lowercase from index 1
-    private String getLowerCaseString(String username) {
+    private String ignoreCaseForNames(String username) {
         username = username.substring(0, 1).toUpperCase() + username.substring(1).toLowerCase();
         return username;
     }

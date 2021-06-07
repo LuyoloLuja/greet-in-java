@@ -7,28 +7,31 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GreetTest {
     @Test
-    public void shouldBeAbleToGreetUserInEnglishAndShowCounter() {
+    public void shouldBeAbleToShowGreetMessageInEnglish() {
         Greet greet = new Greet();
+
+        assertEquals(greet.greetUser("Luyolo", "ENGLISH"), "Hello Luyolo!");
+    }
+    @Test
+    public void shouldBeAbleToShowGreetMessageInIsiXhosa() {
+        Greet greet = new Greet();
+
+        assertEquals(greet.greetUser("Luyolo", "ISIXHOSA"), "Molo Luyolo!");
+    }
+    @Test
+    public void shouldBeAbleToShowGreetMessageInAfrikaans() {
+        Greet greet = new Greet();
+
+        assertEquals(greet.greetUser("Luyolo", "AFRIKAANS"), "More Luyolo!");
+    }
+
+    @Test
+    public void shouldBeAbleToDisplayAllGreetedUsers() {
+        Greet greet = new Greet();
+
         greet.greetUser("Luyolo", "ENGLISH");
 
         assertEquals(greet.greetedUsers(), "Luyolo : 1");
-    }
-    @Test
-    public void shouldBeAbleToGreetUserInIsiXhosaAndDisplayCounter() {
-        Greet greet = new Greet();
-        greet.greetUser("Luyolo", "ISIXHOSA");
-        greet.greetUser("Luyolo", "ISIXHOSA");
-
-        assertEquals(greet.greetedUsers(), "Luyolo : 2");
-    }
-    @Test
-    public void shouldBeAbleToGreetUserInAfrikaansAndDisplayCounter() {
-        Greet greet = new Greet();
-        greet.greetUser("Luyolo", "AFRIKAANS");
-        greet.greetUser("Luyolo", "AFRIKAANS");
-        greet.greetUser("Luyolo", "AFRIKAANS");
-
-        assertEquals(greet.greetedUsers(), "Luyolo : 3");
     }
 
     @Test
@@ -57,5 +60,69 @@ public class GreetTest {
 
         assertEquals(greet.counterForAllUsers(), 3);
     }
+    @Test
+    public void shouldIgnoreCaseForNames() {
+        Greet greet = new Greet();
 
+        greet.greetUser("Luyolo", "ENGLISH");
+        greet.greetUser("LUYOLO", "ENGLISH");
+        greet.greetUser("LuYoLo", "ENGLISH");
+
+        assertEquals(greet.counterForAllUsers(), 1);
+    }
+
+    @Test
+    public void shouldShowHowManyTimesEachUserWasGreeted() {
+        Greet greet = new Greet();
+
+        greet.greetUser("Luyolo", "ENGLISH");
+        greet.greetUser("Luyolo", "ENGLISH");
+        greet.greetUser("Luyolo", "ENGLISH");
+        greet.greetUser("Salizwa", "AFRIKAANS");
+        greet.greetUser("Salizwa", "AFRIKAANS");
+        greet.greetUser("Salizwa", "AFRIKAANS");
+        greet.greetUser("Simthe", "ISIXHOSA");
+        greet.greetUser("Simthe", "ISIXHOSA");
+        greet.greetUser("Simthe", "ISIXHOSA");
+
+        assertEquals(greet.counterForOneUser("Luyolo"), "Luyolo : 3");
+        assertEquals(greet.counterForOneUser("Salizwa"), "Salizwa : 3");
+        assertEquals(greet.counterForOneUser("Simthe"), "Simthe : 3");
+    }
+
+    @Test
+    public void shouldBeAbleToClearGreetedUsers() {
+        Greet greet = new Greet();
+
+        greet.greetUser("Luyolo", "ENGLISH");
+        greet.greetUser("Simthe", "ISIXHOSA");
+        greet.greetUser("Salizwa", "AFRIKAANS");
+
+        greet.clearAllUsers();
+
+        assertEquals(greet.counterForAllUsers(), 0);
+    }
+    @Test
+    public void shouldBeAbleToDecrementOneUserCounter() {
+        Greet greet = new Greet();
+
+        greet.greetUser("Luyolo", "ENGLISH");
+        greet.greetUser("Luyolo", "ENGLISH");
+
+        greet.clearOneUser("Luyolo");
+
+        assertEquals(greet.counterForOneUser("Luyolo"), "Luyolo : 1");
+    }
+    @Test
+    public void shouldBeAbleToClearOneUser() {
+        Greet greet = new Greet();
+
+        greet.greetUser("Simthe", "ISIXHOSA");
+        greet.greetUser("Simthe", "ISIXHOSA");
+
+        greet.clearOneUser("Simthe");
+        greet.clearOneUser("Simthe");
+
+        assertEquals(greet.counterForOneUser("Simthe"), "Simthe : 0");
+    }
 }
