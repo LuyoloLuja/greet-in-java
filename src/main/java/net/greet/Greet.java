@@ -24,10 +24,14 @@ public class Greet implements Greetings {
         String username = "";
         int userCounter = 0;
 
-        for (Map.Entry<String, Integer> name : greetedUsers.entrySet()) {
-            username = name.getKey();
-            userCounter = name.getValue();
-            System.out.println("Name: " + username + " - Times Greeted: " + userCounter);
+        if (greetedUsers.size() > 0) {
+            for (Map.Entry<String, Integer> name : greetedUsers.entrySet()) {
+                username = name.getKey();
+                userCounter = name.getValue();
+                System.out.println("Name: " + username + " - Times Greeted: " + userCounter);
+            }
+        } else {
+            System.out.println("No greeted users yet!");
         }
         return username + " : " + userCounter;
     }
@@ -37,10 +41,14 @@ public class Greet implements Greetings {
         username = ignoreCaseForNames(username);
         int currentUserCounter = 0;
 
-        if (greetedUsers.containsKey(username)) {
-            currentUserCounter  = greetedUsers.get(username);
+        if (greetedUsers.size() > 0) {
+            if (greetedUsers.containsKey(username)) {
+                currentUserCounter  = greetedUsers.get(username);
+            }
+            System.out.println("Name: " + username + " - Times Greeted: " + currentUserCounter);
+        } else {
+            System.out.println("No greeted users yet!");
         }
-        System.out.println("Name: " + username + " - Times Greeted: " + currentUserCounter);
         return username + " : " + currentUserCounter;
     }
 
@@ -51,33 +59,27 @@ public class Greet implements Greetings {
 
 //  method to clear delete all users and reset counter
     public void clearAllUsers() {
-        greetedUsers.clear();
-    }
 
-//  clear method that deletes a user by username and decrement counter for all by 1
-    public int clearOneUser(String username) {
-        username = ignoreCaseForNames(username);
-        int currentUser = 0;
-
-        if (greetedUsers.get(username) > 0) {
-            currentUser = greetedUsers.get(username);
-            currentUser--;
-
-//            greetedUsers.put(username, currentUser);
-            greetedUsers.remove(username);
-            System.out.println("Cleared " + username + "!");
-
-//            if (currentUser > 0) {
-//                System.out.println("Counter decremented for " + username + "!");
-//                System.out.println(username + ": " + currentUser);
-//            }  else {
-//                greetedUsers.remove(username);
-//                System.out.println("Cleared " + username + "!");
-//            }
+        if (greetedUsers.size() > 0) {
+            greetedUsers.clear();
+            System.out.println("Cleared!");
         } else {
             System.out.println("No greeted users yet!");
         }
-        return currentUser;
+    }
+
+//  clear method that deletes a user by username and decrement counter for all by 1
+    public void clearOneUser(String username) {
+        username = ignoreCaseForNames(username);
+
+        if (greetedUsers.size() > 0) {
+            if (greetedUsers.get(username) > 0) {
+                greetedUsers.remove(username);
+                System.out.println("Cleared " + username + "!");
+            }
+        } else {
+            System.out.println("No greeted users yet!");
+        }
     }
 
 //    help method to show users how to use the program

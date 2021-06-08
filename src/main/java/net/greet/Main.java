@@ -1,16 +1,14 @@
 package net.greet;
 
-import java.util.Locale;
-import java.util.Map;
 import java.util.Scanner;
-import java.util.Set;
 
 public class Main {
     public static void main(String[] args) {
         Greet greet = new Greet();
 
-//      get user language
+//      get user input
         Scanner commandScanner = new Scanner(System.in);
+        System.out.println(" ");
         System.out.println("Enter 'help' to get an overview of how to use the program.");
         String enteredString;
 
@@ -29,6 +27,7 @@ public class Main {
             String enteredName = "";
             String enteredLanguage = "";
 
+//          if statements to set command, name & language according to the index of the string
             if (commandBits.length == 1){
                 enteredCommand = commandBits[0].toLowerCase();
             } else if (commandBits.length == 2) {
@@ -40,42 +39,19 @@ public class Main {
                 enteredLanguage = commandBits[2];
             }
 
-            Set<Map.Entry<String, Integer>> availableUsers = greet.greetedUsers.entrySet();
-
+//          if statements to set the commands to go with their appropriate methods
             if (enteredCommand.equals("greet")) {
                 System.out.println(greet.greetUser(enteredName, enteredLanguage));
             } else if(enteredCommand.equals("greeted")) {
-
-                if (availableUsers.size() > 0) {
-                    greet.greetedUsers();
-                } else {
-                    System.out.println("No greeted users yet!");
-                }
+                greet.greetedUsers();
             } else if (enteredCommand.equals("counter")) {
-                greet.counterForAllUsers();
+                System.out.println("Number of users greeted: " + greet.counterForAllUsers());
             } else if(enteredCommand.equals("count") && !enteredName.equals(" ")) {
-
-                if (availableUsers.size() > 0) {
-                    greet.counterForOneUser(enteredName);
-                } else {
-                    System.out.println("No greeted users yet!");
-                }
+                greet.counterForOneUser(enteredName);
             } else if (enteredCommand.equals("clear") && !enteredName.equals(" ")) {
-
-                if (availableUsers.size() > 0) {
-                    greet.clearOneUser(enteredName);
-                } else {
-                    System.out.println("No greeted users yet!");
-                }
+                greet.clearOneUser(enteredName);
             } else if(enteredCommand.equals("delete")){
-
-                if (availableUsers.size() > 0) {
-                    greet.clearAllUsers();
-                    System.out.println("Cleared!");
-                } else {
-                    System.out.println("No greeted users yet!");
-                }
-
+                greet.clearAllUsers();
             } else if (enteredCommand.equals("help")){
                 greet.help();
             } else if (enteredCommand.equals("exit")) {
