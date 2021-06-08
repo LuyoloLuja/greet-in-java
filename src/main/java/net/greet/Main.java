@@ -52,12 +52,7 @@ public class Main {
                     System.out.println("No greeted users yet!");
                 }
             } else if (enteredCommand.equals("counter")) {
-
-                if (availableUsers.size() > 0) {
-                    System.out.println("Number of greeted users: " + greet.counterForAllUsers());
-                } else {
-                    System.out.println("No greeted users yet!");
-                }
+                greet.counterForAllUsers();
             } else if(enteredCommand.equals("count") && !enteredName.equals(" ")) {
 
                 if (availableUsers.size() > 0) {

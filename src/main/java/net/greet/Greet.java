@@ -63,15 +63,19 @@ public class Greet implements Greetings {
             currentUser = greetedUsers.get(username);
             currentUser--;
 
-            greetedUsers.put(username, currentUser);
+//            greetedUsers.put(username, currentUser);
+            greetedUsers.remove(username);
+            System.out.println("Cleared " + username + "!");
 
-            if (currentUser > 0) {
-                System.out.println("Counter decremented for " + username + "!");
-                System.out.println(username + ": " + currentUser);
-            }  else {
-                greetedUsers.remove(username);
-                System.out.println("Cleared " + username + "!");
-            }
+//            if (currentUser > 0) {
+//                System.out.println("Counter decremented for " + username + "!");
+//                System.out.println(username + ": " + currentUser);
+//            }  else {
+//                greetedUsers.remove(username);
+//                System.out.println("Cleared " + username + "!");
+//            }
+        } else {
+            System.out.println("No greeted users yet!");
         }
         return currentUser;
     }
