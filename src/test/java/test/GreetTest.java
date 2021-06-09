@@ -103,7 +103,7 @@ public class GreetTest {
         assertEquals(greet.counterForAllUsers(), 0);
     }
     @Test
-    public void shouldBeAbleToDecrementOneUserCounter() {
+    public void shouldBeAbleToClearOneUserCounter() {
         Greet greet = new Greet();
 
         greet.greetUser("Luyolo", "ENGLISH");
